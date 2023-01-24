@@ -4,6 +4,7 @@ import {
   signInWithRedirect, 
   signInWithPopup,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
 } from 'firebase/auth';
 
 import {
@@ -19,7 +20,7 @@ const firebaseConfig = {
   projectId: "awesome-rugs-db",
   storageBucket: "awesome-rugs-db.appspot.com",
   messagingSenderId: "175294790302",
-  appId: "1:175294790302:web:e23f3ac21d184b6304998f"
+  appId: "1:175294790302:web:e23f3ac21d184b6304998f",
 };
 
 
@@ -38,9 +39,10 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googlePro
 export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (userAuth) => {
+  if(!userAuth) return;
+
   const userDocRef = doc(db, 'users', userAuth.uid);
 
-  console.log(userDocRef);
 
   const userSnapshot = await getDoc(userDocRef);
   console.log(userSnapshot);
@@ -54,10 +56,17 @@ export const createUserDocumentFromAuth = async (userAuth) => {
       await setDoc(userDocRef, {
         displayName,
         email,
-        createdAt
+        createdAt,
       });
     } catch (error) {
       console.log('error creating the user, error.message');
     }
   }
+  return userDocRef;
+};
+
+export const createAuthWithEmailAndPassword = async (email, password) => {
+  if(!email || !password) return;
+  
+  return await createUserWithEmailAndPassword(auth, email, password);
 };
