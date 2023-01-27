@@ -6,6 +6,7 @@ import App from './App';
 import { UserProvider } from './contexts/user.context';
 
 import './index.scss';
+
 import reportWebVitals from './reportWebVitals';
 
 
@@ -15,7 +16,7 @@ root.render(
     <BrowserRouter>
       <UserProvider>
         <App />
-      </UserProvider>   
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
