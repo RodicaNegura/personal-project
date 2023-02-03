@@ -44,5 +44,5 @@ export const InvertedButton = styled(BaseButton)`
     background-color: black;
     color: white;
     border: none;
-}
+  }
 `;

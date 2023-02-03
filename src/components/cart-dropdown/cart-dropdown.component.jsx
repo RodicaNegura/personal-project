@@ -9,7 +9,7 @@ import CartItem from '../cart-item/cart-item.component';
 import {
   CartDropdownContainer, 
   EmptyMessage, 
-  CartItems
+  CartItems,
 } from './cart-dropdown.styles';
 
 const CartDropdown = () => {
@@ -17,8 +17,8 @@ const CartDropdown = () => {
   const navigate = useNavigate();
 
   const goToCheckoutHandler = () => {
-    navigate('/checkout')
-  }
+    navigate('/checkout');
+  };
 
   return (
     <CartDropdownContainer>
